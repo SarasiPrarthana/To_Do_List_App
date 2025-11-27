@@ -6,9 +6,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
-import javafx.scene.control.CheckBox;
-import javafx.scene.control.DatePicker;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.layout.VBox;
 import model.dto.DashBoardInfoDTO;
 
@@ -18,11 +16,28 @@ import java.util.Date;
 import java.util.Iterator;
 import java.util.ResourceBundle;
 
-public class DashBoardFormController {
+public class DashBoardFormController implements Initializable{
 
     DashBoardService dashBoardService = new DashBoardController();
 
+    ObservableList<DashBoardInfoDTO> dashBoardInfoDTOS = FXCollections.observableArrayList();
+
     private int counter = 1;
+
+    @FXML
+    private TableColumn<?, ?> colDate;
+
+    @FXML
+    private TableColumn<?, ?> colDescription;
+
+    @FXML
+    private TableColumn<?, ?> colID;
+
+    @FXML
+    private TableColumn<?, ?> colTitle;
+
+    @FXML
+    private TableView<?> txtTbl;
 
     @FXML
     private DatePicker txtDate;
@@ -82,5 +97,10 @@ public class DashBoardFormController {
                 }
             }
         }
+    }
+
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+
     }
 }
