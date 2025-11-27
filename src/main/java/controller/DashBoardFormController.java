@@ -5,6 +5,7 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
@@ -12,15 +13,16 @@ import javafx.scene.layout.VBox;
 import model.dto.DashBoardInfoDTO;
 
 import java.net.URL;
+import java.time.LocalDate;
+import java.util.Date;
+import java.util.Iterator;
 import java.util.ResourceBundle;
 
 public class DashBoardFormController {
 
-    private int counter = 1;
+    DashBoardService dashBoardService = new DashBoardController();
 
-//    DashBoardService dashBoardService = new DashBoardController();
-//
-//    ObservableList<DashBoardInfoDTO> dashBoardInfoDTOS = FXCollections.observableArrayList();
+    private int counter = 1;
 
     @FXML
     private DatePicker txtDate;
@@ -42,6 +44,14 @@ public class DashBoardFormController {
 
     @FXML
     void btnAddOnAction(ActionEvent event) {
+//
+//        String id = txtId.getText();
+//        String title = txtTitle.getText();
+//        String description = txtDescription.getText();
+//        String date = txtDate.getValue().toString();
+//
+//        dashBoardService.addDashBoardDetails(id,title,description,date);
+
         CheckBox checkBox = new CheckBox();
 //        TextField newField = new TextField();
         checkBox.setText("Task " + counter);
@@ -59,8 +69,18 @@ public class DashBoardFormController {
         counter++;
     }
 
-//    @Override
-//    public void initialize(URL url, ResourceBundle resourceBundle) {
-//
-//    }
+    @FXML
+    void btnCompletedOnAction(ActionEvent event) {
+        Iterator<Node> iterator = txtVBox.getChildren().iterator();
+
+        while (iterator.hasNext()) {
+            Node node = iterator.next();
+            if (node instanceof CheckBox) {
+                CheckBox cb = (CheckBox) node;
+                if (cb.isSelected()) {
+                    iterator.remove();  // remove only selected checkbox
+                }
+            }
+        }
+    }
 }

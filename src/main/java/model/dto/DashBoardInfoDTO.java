@@ -7,5 +7,5 @@ public class DashBoardInfoDTO {
     private String id;
     private String title;
     private String description;
-    private Date date;
+    private String date;
 }
