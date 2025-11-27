@@ -11,7 +11,7 @@ public class DBConnection {
     private Connection connection;
 
     private DBConnection() throws SQLException {
-        connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/thogakade_management_system", "root", "1234");
+        connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/toDoList", "root", "1234");
     }
     public static DBConnection getInstance() throws SQLException {
         if (instance == null){
